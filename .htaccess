@@ -1,0 +1,10 @@
+
+RewriteEngine On
+RewriteBase /
+
+# ---- FRONT CONTROLLER ----
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+# --- YOU CAN USE GET WITHOUT INIT WITHOUT FIRST ? [ALWAYS USE /&var=value links]
+RewriteRule ^(.*)$ /?url=$1
+
