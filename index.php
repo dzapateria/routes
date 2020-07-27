@@ -8,7 +8,7 @@ $uri = uri();
 $uri_array = uri(true);
 
 // si no se solicito pagina carga home
-$page = !empty($uri_array['0']) ? $uri_array['0'] : 'home';
+$page = $uri ? $uri_array['0'] : 'home';
 
 // Si la pagina no existe carga 404
 $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pages/404.php";
@@ -33,28 +33,9 @@ $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pag
     <a href="/services1/">Services2</a>
 </nav>
 
-<!-- Page php here -->
-<?php
-echo "<hr>";
-
-echo "<b>\$_GET: </b>";
-print_r($_GET);
-echo "<br>";
-
-echo '<b>uri()</b>: ';
-echo uri() . '<br>';
-echo '<b>uri(true) </b>';
-print_r (uri(true)). '<br>';
-
-
-
-include $pagesrc;
-
-
-?>
-<!--end php page -->
-
-
+<!-- Page here -->
+<?php include $pagesrc; ?>
+<!--end page -->
 
 </body>
 </html>
