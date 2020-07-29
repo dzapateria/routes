@@ -45,8 +45,15 @@ Debug info
         <td> PHP_OS</td>
         <td> <?=PHP_OS?></td>
     </tr>
+    <tr>
+        <td> DEV_MODE</td>
+        <td> <?=DEV_MODE?></td>
+    </tr>
 
+    <tr>
+        <td> src()</td>
+        <td> <?=src()?></td>
+    </tr>
 
 </table>
 
-<p> </p>

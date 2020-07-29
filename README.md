@@ -20,8 +20,12 @@ Always usage the constant before names of pages or files in HTML
 <img src="<?= FILES ?>200.jpg" alt="">
 ```
 
-##Configuration
+## Configuration
 
+- Why load partials with own functions instead of includes?
+
+This is good for intermediate in absolute source of file, is better can add in the own inc() function a preceded directory than search and remplace many files of you project. 
+Also we can test if the file path exist and change the route if not exist.
 ### .htaccess (Only for subdirectory usage)
 
 ``` 
@@ -30,6 +34,26 @@ RewriteCond %{REQUEST_URI} app
 RewriteRule ^(.*)$ /app/?url=$1 [QSA]
 ```
 
+routes_config.php configuration you folder structure 
+``` 
+
+// Options true @Bool, false @Bool, 'auto' @string
+const MODE = 'auto';
+
+// DEFINE YOU WEB FOLDER STRUCTURE (For href/src web links)
+const WEB_ROOT = '/';
+const FILES = WEB_ROOT.'files/';
+const CSS = WEB_ROOT.'css/';
+const JS = WEB_ROOT.'js/';
+
+ // For filesystem functions or include/requires
+const PARTIALS = ROOT . 'partials/';
+const PAGES = ROOT . 'pages/';
+
+// DEFINE YOU DEFAULT PAGE
+const HOME = 'home';
+
+```
 
 
 - href and src html tag need this directory first (const WEBROOT='/app/')

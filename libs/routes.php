@@ -2,6 +2,9 @@
 
 /* Version: 0.1 */
 
+require 'routes_config.php';
+
+define('DEV', dev(MODE));
 
 
 function uri($valor = false)
@@ -31,23 +34,66 @@ function uri($valor = false)
     return $clean;
 }
 
-
 function dev($opt){
-
-    if( is_bool($opt) ) return $opt;
+    define('DEV_MODE', $opt);
+    if( is_bool($opt) ) $value = $opt;
 
     if ($opt === 'auto'){
         if (PHP_OS == 'WINNT') {
-            return true;
+            $value = true;
         }else{
-           return false;
+          $value = false;
         }
     }
+    return $value;
+}
+
+/* Si existe la vista en el directorio lo carga */
+
+    function part($name, $src = PARTIALS){
+       // echo PARTIALS. "$filename.php";
+
+        $fullpath = PARTIALS . "$name.php";
+        return $fullpath;
+
+    }
+
+    function src($pos = 0, $src = PAGES){
+
+    // If value in pos URI Save in page, else value of HOME
+    $page = uri() ? uri(true)[$pos] : HOME;
+
+    // Fullpath
+    $fullpath = "$src$page.php";
+    $error = $src."404.php";
+
+    // Test if the page exist
+
+    if(file_exists($fullpath)) {
+        return $fullpath;
+    }else{
+        http_response_code(404);
+        return $error;
+    }
+
+
+
+    // echo PARTIALS. "$filename.php";
+    //
+    //
+ //   $name = uri(true)[$pos];
+
+
+
+     // include PAGES. "$page.php";
 
 }
 
+// Use lib routes
+define('URI',uri());
+$uri = uri();
+$uri_array = uri(true);
 
 
 
 
-require 'routes_config.php';
