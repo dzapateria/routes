@@ -1,17 +1,24 @@
 <?php
 session_start();
-define('DIR', str_replace('\\', '/', __DIR__.'/'));
-include DIR . "libs/routes.php";
+/**
+ * DIR save the root of project absolute os format for includes or filesystem work
+ * We can move a file or page and all access of filesystem no break for is absolute real sources
+ * Cross OS is the change of LETTER:\folder1\folder2 in WINDOWS for LETTER:/folder1/folder2 CROSS OS
+*/
 
-const DEV = (PHP_OS == 'WINNT') ? true : false;
-$uri = uri();
-$uri_array = uri(true);
+    define('DIR', str_replace('\\', '/', __DIR__.'/'));
+    require DIR.'/libs/routes.php';
+// Helper for development or production env
 
-// si no se solicito pagina carga home
-$page = $uri ? $uri_array['0'] : 'home';
+    const DEV = (PHP_OS == 'WINNT') ? true : false;
 
-// Si la pagina no existe carga 404
-$pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pages/404.php";
+    // Use lib routes
+    $uri = uri();
+    $uri_array = uri(true);
+    // si no se solicito pagina carga home
+    $page = $uri ? $uri_array['0'] : 'home';
+    // Config page load and 404 Page
+    $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pages/404.php";
 
 
 ?>
@@ -29,14 +36,18 @@ $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pag
 
 <nav>
     <a href="/">Home</a>
-    <a href="/&x=2">x2</a>
-    <a href="services/&x=3">Services</a>
-    <a href="/services1/">Services2</a>
+    <a href="/about/">about</a>
+    <a href="/services/&x=3">Services</a>
+    <a href="/no-exist/">error</a>
 </nav>
 
 <!-- Page here -->
 <?php include $pagesrc; ?>
 <!--end page -->
+
+
+<!-- debug helpers outputs -->
+<?php if(DEV) include DIR . '/libs/debug.php'; ?>
 
 </body>
 </html>
