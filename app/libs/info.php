@@ -14,8 +14,9 @@ Debug info
 <hr>
 <table>
     <tr>
-        <th>VARIABLE</th>
-        <th>VALUE</th>
+        <th>OP</th>
+        <th>val</th>
+        <th>Description</th>
     </tr>
     <tr>
         <td> uri():</td>
@@ -30,8 +31,8 @@ Debug info
         <td> <?php @print_r ($_GET['url'])?></td>
     </tr>
     <tr>
-        <td> ROOT </td>
-        <td> <?=ROOT?> </td>
+        <td> DIR </td>
+        <td> <?=DIR?> </td>
     </tr>
     <tr>
         <td> DEV </td>
@@ -40,10 +41,6 @@ Debug info
     <tr>
         <td> $_GET </td>
         <td> <?php print_r ($_GET)?></td>
-    </tr>
-    <tr>
-        <td> PHP_OS</td>
-        <td> <?=PHP_OS?></td>
     </tr>
 
 

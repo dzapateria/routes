@@ -2,8 +2,6 @@
 
 /* Version: 0.1 */
 
-
-
 function uri($valor = false)
 {
     if ( !isset($_GET['url'])) return false;
@@ -30,24 +28,3 @@ function uri($valor = false)
     }
     return $clean;
 }
-
-
-function dev($opt){
-
-    if( is_bool($opt) ) return $opt;
-
-    if ($opt === 'auto'){
-        if (PHP_OS == 'WINNT') {
-            return true;
-        }else{
-           return false;
-        }
-    }
-
-}
-
-
-
-
-
-require 'routes_config.php';

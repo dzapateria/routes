@@ -1,27 +1,8 @@
 <?php
 session_start();
-/**
- * DIR save the root of project absolute os format for includes or filesystem work
- * We can move a file or page and all access of filesystem no break for is absolute real sources
- * Cross OS is the change of LETTER:\folder1\folder2 in WINDOWS for LETTER:/folder1/folder2 CROSS OS
-*/
 
-    define('DIR', str_replace('\\', '/', __DIR__.'/'));
-    require DIR.'/libs/routes.php';
-
-    // Helper for development or production env
-         //  const DEV = (PHP_OS == 'WINNT') ? true : false
-    /* Forded dev true */
-    const DEV = false;
-
-    // Use lib routes
-    $uri = uri();
-    $uri_array = uri(true);
-    // si no se solicito pagina carga home
-    $page = $uri ? $uri_array['0'] : 'home';
-    // Config page load and 404 Page
-    $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pages/404.php";
-
+define('ROOT', str_replace('\\', '/', __DIR__.'/'));
+require 'libs/routes.php';
 
 ?>
 <!doctype html>
@@ -37,10 +18,10 @@ session_start();
 <body>
 
 <nav>
-    <a href="/">Home</a>
-    <a href="/about/">about</a>
-    <a href="/services/&x=3">Services</a>
-    <a href="/no-exist/">error</a>
+    <a href="<?=WEB_ROOT?>">Home</a>
+    <a href="<?=WEB_ROOT?>about/">about</a>
+    <a href="<?=WEB_ROOT?>services/&x=3">Services</a>
+    <a href="<?=WEB_ROOT?>no-exist/">error</a>
 </nav>
 
 <!-- Page here -->
@@ -49,7 +30,7 @@ session_start();
 
 
 <!-- debug helpers outputs -->
-<?php if(DEV) include DIR . '/libs/info.php'; ?>
+<?php if(DEV) include ROOT . '/libs/info.php'; ?>
 
 </body>
 </html>

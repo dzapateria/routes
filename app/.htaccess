@@ -6,7 +6,9 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 # --- YOU CAN USE GET WITHOUT INIT WITHOUT FIRST ? [ALWAYS USE /&var=value links]
-RewriteRule ^(.*)$ /?url=$1 [QSA]
+# RewriteRule ^(.*)$ /?url=$1 [QSA]
 
 ## --- OPERATE IN SUBFOLDIEAR --------
 
+RewriteCond %{REQUEST_URI} app
+RewriteRule ^(.*)$ /app/?url=$1 [QSA]
