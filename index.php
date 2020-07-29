@@ -1,7 +1,7 @@
 <?php
 session_start();
 define('DIR', str_replace('\\', '/', __DIR__.'/'));
-include DIR . "inc/functions.php";
+include DIR . "libs/routes.php";
 
 const DEV = (PHP_OS == 'WINNT') ? true : false;
 $uri = uri();
@@ -22,6 +22,7 @@ $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pag
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css?v=<?time()?>">
     <title><?=$page?></title>
 </head>
 <body>
@@ -29,7 +30,7 @@ $pagesrc = file_exists(DIR. "/pages/$page.php") ? DIR. "/pages/$page.php" : "pag
 <nav>
     <a href="/">Home</a>
     <a href="/&x=2">x2</a>
-    <a href="/services/&x=3">Services</a>
+    <a href="services/&x=3">Services</a>
     <a href="/services1/">Services2</a>
 </nav>
 
