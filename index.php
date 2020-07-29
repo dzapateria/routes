@@ -8,9 +8,11 @@ session_start();
 
     define('DIR', str_replace('\\', '/', __DIR__.'/'));
     require DIR.'/libs/routes.php';
-// Helper for development or production env
 
-    const DEV = (PHP_OS == 'WINNT') ? true : false;
+    // Helper for development or production env
+         //  const DEV = (PHP_OS == 'WINNT') ? true : false
+    /* Forded dev true */
+    const DEV = false;
 
     // Use lib routes
     $uri = uri();
@@ -29,7 +31,7 @@ session_start();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles.css?v=<?time()?>">
+    <link rel="stylesheet" href="styles.css?v=<?=DEV?time():date("d.m.y")?>">
     <title><?=$page?></title>
 </head>
 <body>
@@ -47,7 +49,7 @@ session_start();
 
 
 <!-- debug helpers outputs -->
-<?php if(DEV) include DIR . '/libs/debug.php'; ?>
+<?php if(DEV) include DIR . '/libs/info.php'; ?>
 
 </body>
 </html>
