@@ -1,5 +1,13 @@
 ## Routes by dzapateria
 
+### DETAILS
+
+- Give a ROOT constant for cross system OS paths
+- Give a WEBROOT for define you structure in all links.
+- Front controller with use friendly urls and also GET parameters.
+- 
+
+
 ## index.php
 Fix path OS diferences with Windows (a\b\c) vs Linux (a/b/c) when use \_\_DIR\_\_ 
 with this now have a ROOT constant with ROOT real ap directory CrossOS. 

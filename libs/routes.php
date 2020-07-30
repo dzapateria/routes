@@ -4,9 +4,6 @@
 
 require 'routes_config.php';
 
-define('DEV', dev(MODE));
-
-
 function uri($valor = false)
 {
     if ( !isset($_GET['url'])) return false;
@@ -16,8 +13,9 @@ function uri($valor = false)
 
 // Return for String
     $url = strtolower($_GET['url']);
-    $url_slash = (substr($url, -1) === '/') ? $url : $url . '/';
     //  END WITH '/' ALWAYS FOR CONSISTENCE
+    $url_slash = (substr($url, -1) === '/') ? $url : $url . '/';
+
     if (!$valor) return $url_slash;
 
     // For array Continue --------
@@ -35,27 +33,27 @@ function uri($valor = false)
 }
 
 function dev($opt){
+
     define('DEV_MODE', $opt);
-    if( is_bool($opt) ) $value = $opt;
+    if ($opt == 'true' OR true) return true;
+    if ($opt == 'false' OR false) return false;
 
     if ($opt === 'auto'){
         if (PHP_OS == 'WINNT') {
-            $value = true;
+            $env = true;
         }else{
-          $value = false;
+          $env = false;
         }
     }
-    return $value;
+    return $env;
 }
+
 
 /* Si existe la vista en el directorio lo carga */
 
-    function part($name, $src = PARTIALS){
-       // echo PARTIALS. "$filename.php";
-
+    function partial($name, $src = PARTIALS){
         $fullpath = PARTIALS . "$name.php";
         return $fullpath;
-
     }
 
     function src($pos = 0, $src = PAGES){
@@ -76,21 +74,11 @@ function dev($opt){
         return $error;
     }
 
-
-
-    // echo PARTIALS. "$filename.php";
-    //
-    //
- //   $name = uri(true)[$pos];
-
-
-
-     // include PAGES. "$page.php";
-
 }
 
-// Use lib routes
-define('URI',uri());
+
+
+
 $uri = uri();
 $uri_array = uri(true);
 

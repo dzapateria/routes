@@ -22,8 +22,8 @@ Debug info
         <td> <?=uri()?></td>
     </tr>
     <tr>
-        <td> uri('a')</td>
-        <td> <?php print_r (uri('a'))?></td>
+        <td> uri(true)</td>
+        <td> <?php print_r (uri(true))?></td>
     </tr>
     <tr>
         <td> $_GET['url']</td>
@@ -45,15 +45,15 @@ Debug info
         <td> PHP_OS</td>
         <td> <?=PHP_OS?></td>
     </tr>
-    <tr>
-        <td> DEV_MODE</td>
-        <td> <?=DEV_MODE?></td>
-    </tr>
 
     <tr>
         <td> src()</td>
         <td> <?=src()?></td>
     </tr>
 
+    <tr>
+        <td> DEV_MODE</td>
+        <td> <?=DEV_MODE?></td>
+    </tr>
 </table>
 

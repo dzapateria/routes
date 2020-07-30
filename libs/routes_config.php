@@ -4,8 +4,8 @@
 */
 
 // Options true @Bool, false @Bool, 'auto' @string
-const MODE = 'auto';
 
+define('DEV', dev('auto'));
 // DEFINE YOU FOLDER STRUCTURE
 const WEB_ROOT = '/';
 const FILES = WEB_ROOT.'files/';
