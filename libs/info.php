@@ -48,7 +48,7 @@ Debug info
 
     <tr>
         <td> src()</td>
-        <td> <?=src()?></td>
+        <td> <?=get_content()?></td>
     </tr>
 
     <tr>

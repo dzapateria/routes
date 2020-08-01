@@ -3,10 +3,11 @@
 /* Version: 0.1 */
 
 require 'routes_config.php';
+require 'files.php';
 
 function uri($valor = false)
 {
-    if ( !isset($_GET['url'])) return false;
+    if (!isset($_GET['url'])) return false;
 
     $url = $_GET['url'];
     if (strlen($url) == '/') return false;
@@ -32,17 +33,18 @@ function uri($valor = false)
     return $clean;
 }
 
-function dev($opt){
+function dev($opt)
+{
 
     define('DEV_MODE', $opt);
-    if ($opt == 'true' OR true) return true;
-    if ($opt == 'false' OR false) return false;
+    if ($opt == 'true' or true) return true;
+    if ($opt == 'false' or false) return false;
 
-    if ($opt === 'auto'){
+    if ($opt === 'auto') {
         if (PHP_OS == 'WINNT') {
             $env = true;
-        }else{
-          $env = false;
+        } else {
+            $env = false;
         }
     }
     return $env;
@@ -51,25 +53,27 @@ function dev($opt){
 
 /* Si existe la vista en el directorio lo carga */
 
-    function partial($name, $src = PARTIALS){
-        $fullpath = PARTIALS . "$name.php";
-        return $fullpath;
-    }
+function get_partial($name, $src = PARTIALS)
+{
+    $fullpath = PARTIALS . "$name.php";
+    return $fullpath;
+}
 
-    function src($pos = 0, $src = PAGES){
+function get_content($pos = 0, $src = PAGES)
+{
 
     // If value in pos URI Save in page, else value of HOME
     $page = uri() ? uri(true)[$pos] : HOME;
 
     // Fullpath
     $fullpath = "$src$page.php";
-    $error = $src."404.php";
+    $error = $src . "404.php";
 
     // Test if the page exist
 
-    if(file_exists($fullpath)) {
+    if (file_exists($fullpath)) {
         return $fullpath;
-    }else{
+    } else {
         http_response_code(404);
         return $error;
     }
@@ -77,6 +81,11 @@ function dev($opt){
 }
 
 
+function get_pagename($pos = 0)
+{
+    $page = uri() ? uri(true)[$pos] : HOME;
+    return $page;
+}
 
 
 $uri = uri();

@@ -8,18 +8,18 @@ require 'libs/routes.php';
 
 
 <?php
-include partial('head');
+include get_partial('head');
 ?>
 
 <!-- Page here -->
 
 <?php
-include src();
+include get_content();
 ?>
 <!--end page -->
 
 <?php
-include partial('footer');
+include get_partial('footer');
 ?>
 
 
