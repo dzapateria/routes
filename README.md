@@ -1,6 +1,6 @@
 ## Routes by dzapateria
 
-### DETAIL
+### DETAILS
 
 - Give a ROOT constant for cross system OS paths
 - Give a WEBROOT for define you structure in all links.
