@@ -5,7 +5,7 @@
 
 // Options true @Bool, false @Bool, 'auto' @string
 
-define('DEV', dev('auto'));
+define('DEV', dev('true'));
 // DEFINE YOU FOLDER STRUCTURE
 const WEB_ROOT = '/';
 const FILES = WEB_ROOT.'files/';

@@ -1,25 +1,30 @@
-# ----- ACTIVATE REWRITE MOD -----
+#-------------------------| Activate rewrite |---------------------- 
+
 RewriteEngine On
 
-#------- REDIRECCIÓN HTTPS Y WWW A NO WWW -----------------------
+#-------------------------|  WWW. => // |----------------------  
 
-# ----  to non-www in LOCALHOST
-RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-# ---- to non-www in PRODUCTION
-RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-#------- REDIRECT TO HTTPS ONLY IN .COM PRODUCTION DOMAIN
-RewriteCond %{HTTP_HOST} ^(.*)\.com$ [NC]
+#-------------------------|  HTTP => HTTPS |----------------------  
+    # Only redirect to https if the final hostname not is .dev, .test or localhost
+
+RewriteCond %{HTTP_HOST} !^(.*)(\.test|\.dev|localhost)$ [NC]
 RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# ------ FRONT CONTROLLER -----
+#------------|  FRONT CONTROLLER STATICS SCAPE |------------------  
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
-# ------ URI in GET -----
+#------------|  FRONT CONTROLLER TO ROOT / |-----------------------
+
 RewriteRule ^(.*)$ /?url=$1 [QSA]
+
+#------------|  FRONT CONTROLLER TO FOLDER app/ |-----------------------
+    # For folder with name for example app/ descomment and redirect to /app/?url=$1 [QSA]
+
+# RewriteCond %{REQUEST_URI} app
+# RewriteRule ^(.*)$ /app/?url=$1 [QSA]

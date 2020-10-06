@@ -5,8 +5,6 @@
 - Give a ROOT constant for cross system OS paths
 - Give a WEBROOT for define you structure in all links.
 - Front controller with use friendly urls and also GET parameters.
-- 
-
 
 ## index.php
 Fix path OS diferences with Windows (a\b\c) vs Linux (a/b/c) when use \_\_DIR\_\_ 
@@ -73,3 +71,7 @@ const HOME = 'home';
 const WEBROOT = '/app/
 ```
 
+# The HTACCESS and routes Testing.
+
+- In cpanel Hosting Domain & Subdomains all is correct.
+- In Plesk Domain & Subdomain all is correct.
