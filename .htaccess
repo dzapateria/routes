@@ -1,30 +1,48 @@
 #-------------------------| Activate rewrite |---------------------- 
 
 RewriteEngine On
+RewriteBase /
 
-#-------------------------|  WWW. => // |----------------------  
+
+ # -------------- | MODO MANTENIMIENTO  | -------------------------
+
+ # RewriteCond %{REMOTE_ADDR} !^90.75.234.246 [OR]
+ # RewriteCond %{REMOTE_ADDR} !^90.75.234.246
+ # RewriteCond %{REQUEST_URI} !^/resources/.*$
+ # RewriteCond %{REQUEST_URI} !^/maintenance.html$
+ # RewriteRule ^(.*)$ https://%{HTTP_HOST}/maintenance.html [L]
+
+#-------------------------|  WWW. => // |----------------------
+    # Redirect to non-www
 
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 #-------------------------|  HTTP => HTTPS |----------------------  
     # Only redirect to https if the final hostname not is .dev, .test or localhost
+    # Solo redirecciona a https cuando la url no finalice en .test,.dev o localhost
+
 
 RewriteCond %{HTTP_HOST} !^(.*)(\.test|\.dev|localhost)$ [NC]
 RewriteCond %{HTTPS} !on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 
 #------------|  FRONT CONTROLLER STATICS SCAPE |------------------  
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
-#------------|  FRONT CONTROLLER TO ROOT / |-----------------------
+#------------|  FRONT CONTROLLER TO ROOT / OPTION 1: Root directory |-----------------------
+    # Redirecciona al root cualquier solicitud no existente
 
-RewriteRule ^(.*)$ /?url=$1 [QSA]
+ RewriteRule ^(.*)$ /?url=$1 [QSA]
 
-#------------|  FRONT CONTROLLER TO FOLDER app/ |-----------------------
+#------------|  FRONT CONTROLLER TO FOLDER app/ OPTION 2: Subdirectory |-----------------------
     # For folder with name for example app/ descomment and redirect to /app/?url=$1 [QSA]
+    # For apps independient in folder cambiara esta parte en lugar de la version de arriba
 
-# RewriteCond %{REQUEST_URI} app
-# RewriteRule ^(.*)$ /app/?url=$1 [QSA]
+ #RewriteCond %{REQUEST_URI} app
+ #RewriteRule ^(.*)$ /app/?url=$1 [QSA]
+
+

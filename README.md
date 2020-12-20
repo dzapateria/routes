@@ -75,3 +75,32 @@ const WEBROOT = '/app/
 
 - In cpanel Hosting Domain & Subdomains all is correct.
 - In Plesk Domain & Subdomain all is correct.
+
+# Para usarlo en subdominios.
+
+No requiere nada especial funciona igual que en un dominio principal
+
+# Para combinarlo en un sitio con Wordpress.
+
+# Para usarlo en subdirectorios 
+Para aplicaciones complejas es conveniente no usar esta opción y crear un subdominio.
+
+1. En routes_config.php constante WEB_ROOT edita el valor / por el valor del subdirectorio.
+Es importante que finalice en slash
+    ``` 
+   const WEB_ROOT = '/app/'; 
+   ```
+2. En .htacces comenta la RewriteRule de OPCION 1 directory y descomenta la OPCION 2 escribiendo 
+tanto en la rewriteCond como en la RewriteRule el nombre del directorio, ejemplo con directorio app:
+
+``` 
+ RewriteCond %{REQUEST_URI} app
+ RewriteRule ^(.*)$ /app/?url=$1 [QSA]
+```
+
+3. Donde colocar el .htaccess
+Si va a gestionar multiples aplicaciones puede convenirle tener
+el htaccess en la ruta general fuera del subdirectorio app.
+En cualquier caso la configuración es la misma y puede configurar multiples
+redirecciones con un solo htacces si lo coloca en un nivel superior a las aplicaciones pero
+tambien funcionara si se encuentra en la carpeta de la aplicación.

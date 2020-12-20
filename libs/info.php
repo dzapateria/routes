@@ -55,5 +55,9 @@ Debug info
         <td> DEV_MODE</td>
         <td> <?=DEV_MODE?></td>
     </tr>
+    <tr>
+        <td> WEB_ROOT</td>
+        <td> <?=WEB_ROOT?></td>
+    </tr>
 </table>
 

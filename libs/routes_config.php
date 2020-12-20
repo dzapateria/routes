@@ -4,7 +4,7 @@
 */
 
 // Options true @Bool, false @Bool, 'auto' @string
-
+define('ROOT', str_replace('\\', '/', getcwd().'/'));
 define('DEV', dev('true'));
 // DEFINE YOU FOLDER STRUCTURE
 const WEB_ROOT = '/';

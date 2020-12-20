@@ -1,0 +1,3 @@
+- Eliminar o separar la función de clonar carpeta del repo routes o cambiar el nombre porque eso de rutas no es.
+
+Fecha: 2020-12-20

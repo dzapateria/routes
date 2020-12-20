@@ -75,6 +75,7 @@ function get_content($pos = 0, $src = PAGES)
         return $fullpath;
     } else {
         http_response_code(404);
+        if (DEV) echo "<script>console.log('No se encontra la página $fullpath')</script>";
         return $error;
     }
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-define('ROOT', str_replace('\\', '/', getcwd().'/'));
+
 require 'libs/routes.php';
 
 ?>
